@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <title>MundoMovil Ceuta</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="apple-touch-icon" href="assets/img/apple-icon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="./assets/img/mis_imagenes/telefono-inteligente.png">
+
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/templatemo.css">
+    <link rel="stylesheet" href="assets/css/custom.css">
+
+    <!-- Load fonts style after rendering the layout styles -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
+    <link rel="stylesheet" href="assets/css/fontawesome.min.css">
+
+    <!-- Load map styles -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin=""/> 
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
+    <style type="text/css">
+        #map {
+            height: 500px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Start Top Nav -->
+    <nav class="navbar navbar-expand-lg bg-dark navbar-light d-none d-lg-block" id="templatemo_nav_top">
+        <div class="container text-light">
+            <div class="w-100 d-flex justify-content-between">
+                <div>
+                    <i class="fa fa-envelope mx-2"></i>
+                    <a class="navbar-sm-brand text-light text-decoration-none" href="mailto:mundomovilceuta@gmail.com">mundomovilceuta@gmail.com</a>
+                    <i class="fa fa-phone mx-2"></i>
+                    <a class="navbar-sm-brand text-light text-decoration-none" href="tel:956512419">+34 956 51 24 19</a>
+                    &nbsp;&nbsp;&nbsp;<img class="bordes" src="./assets/img/xiaomi.png"></img>&nbsp;&nbsp;&nbsp;
+                    <a class="navbar-sm-brand text-light text-decoration-none" href="https://www.mi.com/es/">Distribuidores oficiales</a>
+                </div>
+                <div>
+                    <a class="text-light" href="https://www.facebook.com/mundomovilceuta/" target="_blank" rel="sponsored"><i class="fab fa-facebook-f fa-sm fa-fw me-2"></i></a>
+                    <a class="text-light" href="https://www.instagram.com/mundomovilceutaa/" target="_blank"><i class="fab fa-instagram fa-sm fa-fw me-2"></i></a>
+                    <a class="text-light" href="https://wa.me/628060606" target="_blank"><i class="fab fa-whatsapp fa-sm fa-fw me-2"></i></a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- Close Top Nav -->
+
+    <a class="whatsapp-float" href="https://wa.me/628060606" target="_blank"><i class="fab fa-whatsapp fa-lg fa-fw"></i></a>
+
+    <!-- Header -->
+    <nav class="navbar navbar-expand-lg navbar-light shadow">
+        <div class="container d-flex justify-content-between align-items-center">
+
+            <!-- TITULO PAGINA -->
+            <a class="navbar-brand text-success logo h1 align-self-center" href="index.html">
+                <img src="data:image/jpeg;base64,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" alt="" srcset="">
+            </a>
+
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#templatemo_main_nav" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- APARTADOS DEL MENÚ -->
+            <div class="align-self-center collapse navbar-collapse flex-fill  d-lg-flex justify-content-lg-between" id="templatemo_main_nav">
+                <div class="flex-fill">
+                    <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="dispositivos.html">Dispositivos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="accesorios.html">Accesorios</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="contactar.html">Contactar</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </nav>
+    <!-- Close Header -->
+
+    <!-- Modal -->
+    <div class="modal fade bg-white" id="templatemo_search" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="w-100 pt-1 mb-5 text-right">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="" method="get" class="modal-content modal-body border-0 p-0">
+                <div class="input-group mb-2">
+                    <input type="text" class="form-control" id="inputModalSearch" name="q" placeholder="Search ...">
+                    <button type="submit" class="input-group-text bg-success text-light">
+                        <i class="fa fa-fw fa-search text-white"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <!-- Start Content Page -->
+    <div class="container-fluid bg-light py-5">
+        <div class="col-md-6 m-auto text-center">
+            <h1 class="h1"><b>Contacta con nosotros</b></h1>
+            <p>
+                ¡Estamos Aquí para Ayudarte! Si tienes alguna pregunta, comentario o necesitas asistencia, no dudes en ponerte en contacto con nuestro equipo de atención al cliente. 
+                Estamos disponibles para brindarte el mejor servicio y resolver cualquier duda que puedas tener. 
+                Tu satisfacción es nuestra prioridad. ¡Esperamos saber de ti pronto!
+            </p>
+        </div>
+    </div>
+
+    <div id="map"></div>
+
+    <script type="text/javascript">
+        var map = L.map('map').setView([35.8873287,-5.3095005], 17);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            
+        }).addTo(map);
+
+        var popup = L.popup()
+            .setLatLng([35.8873287,-5.3095005])
+            .setContent('<a href="https://www.facebook.com/mundomovilceuta/" target="_blank">Mundo Movil</a>');
+
+        var marker = L.marker([35.8873287,-5.3095005]).bindPopup(popup).openPopup().addTo(map);
+    </script>
+
+    <div class="gallery">
+        <a class="text-decoration-none" href="https://wa.me/628060606" target="_blank">
+            <div class="gallery-item text-dark">
+                <i class="fab fa-whatsapp fa-lg fa-fw"></i>
+                <h3>WHATSAPP</h3>
+            </div>
+        </a>
+        <a class="text-decoration-none" target="_blank" href="https://www.instagram.com/mundomovilceutaa/">
+            <div class="gallery-item text-dark">
+                <i class="fab fa-instagram fa-lg fa-fw"></i>
+                <h3>INSTAGRAM</h3>
+            </div>
+        </a>
+        <a class="text-decoration-none" target="_blank" href="https://www.facebook.com/mundomovilceuta/">
+            <div class="gallery-item text-dark">
+                <i class="fab fa-facebook-f fa-lg fa-fw"></i>
+                <h3>FACEBOOK</h3>
+            </div>
+        </a>
+    </div>
+
+   
+
+    <!-- Start Footer -->
+    <footer class="bg-dark" id="tempaltemo_footer">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-4 pt-5">
+                    <h2 class="h2 text-success border-bottom pb-3 border-light logo"><img src="data:image/jpeg;base64,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" alt="" srcset=""></h2>
+                    <ul class="list-unstyled text-light footer-link-list">
+                        <li>
+                            <i class="fas fa-map-marker-alt fa-fw"></i>
+                            C. Camoens, 4, 51001 Ceuta
+                        </li>
+                        <li>
+                            <i class="fa fa-phone fa-fw"></i>
+                            <a class="text-decoration-none" href="tel:956512419">956 51 24 19</a>
+                        </li>
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512"><style>svg{fill:#ffffff}</style><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>
+                            <a class="text-decoration-none" href="https://wa.me/628060606" target="_blank">628 06 06 06</a>
+                        </li>
+                        <li>
+                            <i class="fa fa-envelope fa-fw"></i>
+                            <a class="text-decoration-none" href="mailto:mundomovilceuta@gmail.com">mundomovilceuta@gmail.com</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="col-md-4 pt-5">
+                    <h2 class="h2 text-light border-bottom pb-3 border-light">Productos</h2>
+                    <ul class="list-unstyled text-light footer-link-list">
+                        <li><a class="text-decoration-none" href="https://www.apple.com/es/">Apple</a></li>
+                        <li><a class="text-decoration-none" href="https://www.mi.com/es/">Xiaomi</a></li>
+                        <li><a class="text-decoration-none" href="https://www.samsung.com/es/">Samsung</a></li>
+                        <li><a class="text-decoration-none" href="https://www.havit.hk/">Havit</a></li>
+                        <li><a class="text-decoration-none" href="https://www.jbl.es/">JBL</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-4 pt-5">
+                    <h2 class="h2 text-light border-bottom pb-3 border-light">Informacion Adicional</h2>
+                    <ul class="list-unstyled text-light footer-link-list">
+                        <li><a class="text-decoration-none" href="#">Inicio</a></li>
+                        <li><a class="text-decoration-none" href="./contactar.html">Localización</a></li>
+                        <li><a class="text-decoration-none" href="./contactar.html">Contactar</a></li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="row text-light mb-4">
+                <div class="col-12 mb-3">
+                    <div class="w-100 my-3 border-top border-light"></div>
+                </div>
+                <div class="col-auto me-auto">
+                    <ul class="list-inline text-left footer-icons">
+                        <li class="list-inline-item border border-light rounded-circle text-center">
+                            <a class="text-light text-decoration-none" target="_blank" href="https://www.facebook.com/mundomovilceuta/"><i class="fab fa-facebook-f fa-lg fa-fw"></i></a>
+                        </li>
+                        <li class="list-inline-item border border-light rounded-circle text-center">
+                            <a class="text-light text-decoration-none" target="_blank" href="https://www.instagram.com/mundomovilceutaa/"><i class="fab fa-instagram fa-lg fa-fw"></i></a>
+                        </li>
+                        <li class="list-inline-item border border-light rounded-circle text-center">
+                            <a class="text-light text-decoration-none" href="https://wa.me/628060606" target="_blank"><i class="fab fa-whatsapp fa-lg fa-fw"></i></a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+
+    </footer>
+    <!-- End Footer -->
+
+    <!-- Start Script -->
+    <script src="assets/js/jquery-1.11.0.min.js"></script>
+    <script src="assets/js/jquery-migrate-1.2.1.min.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/templatemo.js"></script>
+    <script src="assets/js/custom.js"></script>
+    <!-- End Script -->
+</body>
+
+</html>
